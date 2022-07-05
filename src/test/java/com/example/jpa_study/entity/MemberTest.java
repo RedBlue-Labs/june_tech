@@ -100,6 +100,21 @@ class MemberTest {
         tx.commit();
     }
 
+    @Test
+    @DisplayName("remove호출 시 영속성 컨텍스트에 제거되는 지 확인")
+    void test5() {
+        Member member1 = new Member();
+        member1.setId("member1");
+        member1.setUserName("홍길동");
+        em.persist(member1);
+
+        Member member = em.find(Member.class, "member1");
+        em.remove(member);      // remove호출되는 순간 영속성 컨텍스트에는 제거된다. (아직 트랜잭션이 종료되지 않았지만 영속성 컨텍스트에서는 제거됨)
+
+        Member removedMember = em.find(Member.class, "member1"); // 제거된 Entity 조회
+        assertThat(removedMember).isNull();
+    }
+
     private void login(EntityManager em) {
         String id = "supermen";
         Member member = new Member();
