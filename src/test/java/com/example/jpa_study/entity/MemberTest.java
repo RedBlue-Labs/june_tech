@@ -64,6 +64,25 @@ class MemberTest {
         assertThat(member1).isSameAs(member2);
     }
 
+    @Test
+    @DisplayName("쓰기 지연 학습 테스트")
+    void test3() {
+        Member member1 = new Member();
+        member1.setId("member1");
+        member1.setUserName("홍길동");
+
+        Member member2 = new Member();
+        member2.setId("member2");
+        member2.setUserName("홍길순");
+
+        tx.begin();                 // 트랜잭션 시작
+
+        em.persist(member1);        // 1차 캐시에 저장, 아직 DB 저장 X (쓰기 지연 발생)
+        em.persist(member2);        // 1차 캐시에 저장, 아직 DB 저장 X (쓰기 지연 발생)
+
+        tx.commit();                // 쓰기 지연 저장소의 모든 쿼리를 DB에 전달하는 Flush 발생
+    }
+
     private void login(EntityManager em) {
         String id = "supermen";
         Member member = new Member();
