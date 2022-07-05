@@ -1,5 +1,10 @@
 package com.example.jpa_study.entity;
 
+import static org.assertj.core.api.Assertions.*;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +26,17 @@ class MemberTest {
     @Autowired
     private EntityManagerFactory entityManagerFactory;
 
+    private EntityManager em;
+    private EntityTransaction tx;
+
+    @BeforeEach
+    void setup() {
+        em = entityManagerFactory.createEntityManager();
+        tx = em.getTransaction();
+    }
+
     @Test
-
     void test1() {
-        EntityManager em = entityManagerFactory.createEntityManager();
-
-        EntityTransaction tx = em.getTransaction();
-
         try {
             tx.begin();
             login(em);
@@ -38,6 +47,21 @@ class MemberTest {
         } finally {
             em.close();
         }
+    }
+
+    @Test
+    @DisplayName("1차캐시 장점으로 인한 동일성 검증 테스트")
+    void test2() {
+        Member member = new Member();
+        member.setId("member1");
+        member.setUserName("홍길동");
+
+        em.persist(member);
+
+        Member member1 = em.find(Member.class, "member1");
+        Member member2 = em.find(Member.class, "member1");
+
+        assertThat(member1).isSameAs(member2);
     }
 
     private void login(EntityManager em) {
