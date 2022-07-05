@@ -83,6 +83,23 @@ class MemberTest {
         tx.commit();                // 쓰기 지연 저장소의 모든 쿼리를 DB에 전달하는 Flush 발생
     }
 
+    @Test
+    @DisplayName("변경 감지 학습 테스트")
+    void test4() {
+        Member member1 = new Member();
+        member1.setId("member1");
+        member1.setUserName("홍길동");
+        member1.setAge(10);
+        em.persist(member1);
+
+        tx.begin();
+
+        Member member = em.find(Member.class, "member1");
+        member.setUserName("홍순이");
+//        member.setAge(15);
+        tx.commit();
+    }
+
     private void login(EntityManager em) {
         String id = "supermen";
         Member member = new Member();
