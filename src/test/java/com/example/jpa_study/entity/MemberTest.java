@@ -130,6 +130,23 @@ class MemberTest {
         assertThat(em.contains(member1)).isFalse();
     }
 
+    @Test
+    @DisplayName("준영속 EntityManager clear 시 영속성 컨텍스트가 비어있는지 검증")
+    void test7() {
+        Member member1 = new Member();
+        member1.setId("member4");
+        member1.setUserName("홍길동");
+
+        tx.begin();
+        em.persist(member1);
+        Member member = em.find(Member.class, "member1");
+        em.clear(); // 영속성 컨텍스트가 관리하는 Entity 정보 모두 제거
+        tx.commit();
+
+        member1.setAge(20);
+        assertThat(em.contains(member1)).isFalse();
+    }
+
     private void login(EntityManager em) {
         String id = "supermen";
         Member member = new Member();
