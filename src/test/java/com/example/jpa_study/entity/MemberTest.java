@@ -3,6 +3,7 @@ package com.example.jpa_study.entity;
 import static org.assertj.core.api.Assertions.*;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-@Transactional
+//@Transactional
 class MemberTest {
 
     @Autowired
@@ -87,7 +88,7 @@ class MemberTest {
     @DisplayName("변경 감지 학습 테스트")
     void test4() {
         Member member1 = new Member();
-        member1.setId("member1");
+        member1.setId("member3");
         member1.setUserName("홍길동");
         member1.setAge(10);
         em.persist(member1);
@@ -113,6 +114,20 @@ class MemberTest {
 
         Member removedMember = em.find(Member.class, "member1"); // 제거된 Entity 조회
         assertThat(removedMember).isNull();
+    }
+
+    @Test
+    @DisplayName("준영속 시 영속성 컨텍스트에 관리되어있지 않는지 검증")
+    void test6() {
+        Member member1 = new Member();
+        member1.setId("member4");
+        member1.setUserName("홍길동");
+
+        tx.begin();
+        em.persist(member1);
+        em.detach(member1);
+        tx.commit();
+        assertThat(em.contains(member1)).isFalse();
     }
 
     private void login(EntityManager em) {
