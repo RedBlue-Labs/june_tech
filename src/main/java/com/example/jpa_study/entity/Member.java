@@ -2,22 +2,32 @@ package com.example.jpa_study.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Data
-@Table(name = "member")
+@Table(name = "MEMBER")
 //@org.hibernate.annotations.DynamicUpdate // 실제 변경된 필드들만 update 치기위한 애노테이션
 @Entity
 public class Member {
     @Id
+    @Column(name = "ID")
     private String id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String userName;
 
-    @Column(name = "age")
     private int age;
+
+    @Enumerated(EnumType.STRING) // Enum타입은 항상 String으로 처리하자 그래야 나중에 변경에도 용이하다.
+    private RoleType roleType;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModifiedDate;
+
+    @Lob // 별도의 길이 제한이 없다. DB의 타입으로는 varchar가 아닌 CLOB, BLOB타입으로 저장해야 한다.
+    private String description;
 }
