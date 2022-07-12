@@ -14,7 +14,7 @@ public class Member {
     @Column(name = "ID")
     private String id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false, length = 10) // nullable은 DDL auto를 통해 생성된 DDL에 not null 설정
     private String userName;
 
     private int age;
