@@ -49,6 +49,7 @@ public class MergeTest {
         Member member = new Member();
         member.setId(id);
         member.setUserName(username);
+        member.setAge(11);
 
         em.persist(member);
         tx.commit();

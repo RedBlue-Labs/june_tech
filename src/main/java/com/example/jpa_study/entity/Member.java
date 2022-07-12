@@ -6,7 +6,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Table(name = "MEMBER")
+@Table(name = "MEMBER", uniqueConstraints = {
+        @UniqueConstraint(name = "NAME_AGE_UNIQUE", columnNames = {"NAME", "AGE"})
+})
 //@org.hibernate.annotations.DynamicUpdate // 실제 변경된 필드들만 update 치기위한 애노테이션
 @Entity
 public class Member {

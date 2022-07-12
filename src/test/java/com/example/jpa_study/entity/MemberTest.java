@@ -52,7 +52,6 @@ class MemberTest {
         Member member = new Member();
         member.setId("member1");
         member.setUserName("홍길동");
-
         em.persist(member);
 
         Member member1 = em.find(Member.class, "member1");
