@@ -1,11 +1,16 @@
 package com.example.jpa_study.entity;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceException;
+
+import org.assertj.core.api.Assertions;
+import org.hibernate.id.IdentifierGenerationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -164,5 +169,18 @@ class MemberTest {
 
         //삭제
         em.remove(member);
+    }
+
+    @Test
+    @DisplayName("@ID 직접할당 전략을 사용 시 기본키 없이 insert 하게 되면 PersistenceException에러가 발생한다. IdentifierGenerationException 내부에러가 포함되어있다.")
+    void primarykeyTest() {
+            tx.begin();
+            Member member = new Member();
+            member.setAge(10);
+            member.setUserName("test");
+
+            assertThatThrownBy(() -> em.persist(member)).isInstanceOf(PersistenceException.class);
+            tx.commit();
+            em.close();
     }
 }
