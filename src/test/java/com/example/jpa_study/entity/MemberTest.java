@@ -8,9 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
-
-import org.assertj.core.api.Assertions;
-import org.hibernate.id.IdentifierGenerationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -110,7 +107,8 @@ class MemberTest {
         em.persist(member1);
 
         Member member = em.find(Member.class, "member1");
-        em.remove(member);      // remove호출되는 순간 영속성 컨텍스트에는 제거된다. (아직 트랜잭션이 종료되지 않았지만 영속성 컨텍스트에서는 제거됨)
+        em.remove(
+            member);      // remove호출되는 순간 영속성 컨텍스트에는 제거된다. (아직 트랜잭션이 종료되지 않았지만 영속성 컨텍스트에서는 제거됨)
 
         Member removedMember = em.find(Member.class, "member1"); // 제거된 Entity 조회
         assertThat(removedMember).isNull();
@@ -164,7 +162,8 @@ class MemberTest {
         System.out.println(findMember.getUserName() + ", " + findMember.getId());
 
         //목록 조회
-        List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
+        List<Member> members = em.createQuery("select m from Member m", Member.class)
+            .getResultList();
         System.out.println("member size : " + members.size());
 
         //삭제
@@ -174,13 +173,13 @@ class MemberTest {
     @Test
     @DisplayName("@ID 직접할당 전략을 사용 시 기본키 없이 insert 하게 되면 PersistenceException에러가 발생한다. IdentifierGenerationException 내부에러가 포함되어있다.")
     void primarykeyTest() {
-            tx.begin();
-            Member member = new Member();
-            member.setAge(10);
-            member.setUserName("test");
+        tx.begin();
+        Member member = new Member();
+        member.setAge(10);
+        member.setUserName("test");
 
-            assertThatThrownBy(() -> em.persist(member)).isInstanceOf(PersistenceException.class);
-            tx.commit();
-            em.close();
+        assertThatThrownBy(() -> em.persist(member)).isInstanceOf(PersistenceException.class);
+        tx.commit();
+        em.close();
     }
 }
