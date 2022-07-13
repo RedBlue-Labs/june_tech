@@ -1,5 +1,7 @@
 package com.example.jpa_study.entity;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,17 +20,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 class SequenceBoardTest {
 
     @Autowired
-    EntityManager entityManager;
+    private EntityManagerFactory entityManagerFactory;
 
     @Test
     @DisplayName("@GeneratedValue의 Sequence전략을 사용 시 PK값을 확인한다.")
-    @Transactional
     void test1() {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
         SequenceBoard sequenceBoard = new SequenceBoard();
         sequenceBoard.setName("test");
 
-        entityManager.persist(sequenceBoard);
-
+        em.persist(sequenceBoard);
         assertThat(sequenceBoard.getId()).isEqualTo(1);
+        tx.commit();
+
+        em.close();
     }
 }
