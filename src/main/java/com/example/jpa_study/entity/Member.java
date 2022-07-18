@@ -32,4 +32,8 @@ public class Member {
 
     @Lob // 별도의 길이 제한이 없다. DB의 타입으로는 varchar가 아닌 CLOB, BLOB타입으로 저장해야 한다.
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 }
