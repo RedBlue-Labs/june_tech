@@ -1,11 +1,13 @@
 package com.example.jpa_study.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 @Table(name = "MEMBER_SUB", uniqueConstraints = {
         @UniqueConstraint(name = "NAME_AGE_UNIQUE", columnNames = {"NAME", "AGE"})
 })
@@ -33,7 +35,12 @@ public class Member {
     @Lob // 별도의 길이 제한이 없다. DB의 타입으로는 varchar가 아닌 CLOB, BLOB타입으로 저장해야 한다.
     private String description;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_ID")
     private Team team;
+
+    public Member(String id, String name) {
+        this.id = id;
+        this.userName = name;
+    }
 }
