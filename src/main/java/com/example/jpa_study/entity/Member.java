@@ -43,4 +43,9 @@ public class Member {
         this.id = id;
         this.userName = name;
     }
+
+    public void setTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
+    }
 }

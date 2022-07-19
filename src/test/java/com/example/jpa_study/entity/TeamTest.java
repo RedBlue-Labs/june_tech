@@ -159,4 +159,18 @@ class TeamTest {
         team.getMembers().add(member); // 연관관계 주인은 아니지만 객체임으로 연관관계 맺어주기 위함.
         entityManager.persist(member);
     }
+
+    @Test
+    @DisplayName("편의 메서드 사용하여 가독성 높이기")
+    void test10() {
+        Team team = new Team("team1", "팀1");
+        entityManager.persist(team);
+
+        Member member = new Member("member1", "회원1");
+        member.setTeam(team);
+
+        entityManager.persist(member);
+        entityManager.flush();
+    }
+
 }
