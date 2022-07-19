@@ -93,4 +93,56 @@ class TeamTest {
         assertThatThrownBy(() -> entityManager.flush())
                 .isInstanceOf(PersistenceException.class);
     }
+
+    @Test
+    @Transactional
+    @DisplayName("1:N 컬렉션 조회")
+    void test6() {
+        test1();
+        entityManager.flush();
+        Team team = entityManager.find(Team.class, "team1");
+        entityManager.flush();
+        List<Member> members = team.getMembers();
+        entityManager.flush();
+        for (Member member : members) {
+            System.out.println("member username = " + member.getUserName());
+        }
+    }
+
+    @Test
+    @DisplayName("연관관계 주인이 아닌 엔티티의 값을 변경 시 쿼리 안 생성되는지 확인")
+    void test7() {
+        Team team = new Team("team1", "팀1");
+        entityManager.persist(team);
+
+        Member member = new Member("member1", "회원1");
+        member.setTeam(team);
+        entityManager.persist(member); // 연관관계 설정
+
+        Member member2 = new Member("member2", "회원2");
+        member2.setTeam(team);
+        entityManager.persist(member2); // 연관관계 설정
+
+        team.getMembers().add(member); // 연관관계 주인이 아님으로 쿼리가 insert쿼리가 생성되지 않음.
+        entityManager.flush();
+    }
+
+    @Test
+    @DisplayName("연관관계 주인이 아닌 엔티티에 값 설정 시 값이 추가되지 않음.")
+    void test8() {
+        Member member = new Member("member1", "회원1");
+        entityManager.persist(member);
+
+        Member member2 = new Member("member2", "회원2");
+        entityManager.persist(member2);
+
+        Team team = new Team("team1", "팀1");
+        team.getMembers().add(member);
+        team.getMembers().add(member2);
+        entityManager.persist(team);
+        entityManager.flush();
+
+        Member savedMember = entityManager.find(Member.class, "member1");
+        assertThat(savedMember.getTeam()).isNull();
+    }
 }
