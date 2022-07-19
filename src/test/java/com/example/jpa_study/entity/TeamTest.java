@@ -1,5 +1,7 @@
 package com.example.jpa_study.entity;
 
+import org.assertj.core.api.Assertions;
+import org.hibernate.exception.ConstraintViolationException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,10 +11,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -76,5 +80,17 @@ class TeamTest {
         Member member = entityManager.find(Member.class, "member1");
         member.setTeam(null);
         entityManager.flush();
+    }
+
+    @Test
+    @Transactional
+    @DisplayName("연관관계 맺어진 엔티티를 삭제할 경우 [PersistenceException] 에러가 발생한다.")
+    void test5() {
+        test1();
+        entityManager.flush();
+        Team team = entityManager.find(Team.class, "team1");
+        entityManager.remove(team);
+        assertThatThrownBy(() -> entityManager.flush())
+                .isInstanceOf(PersistenceException.class);
     }
 }
