@@ -53,5 +53,20 @@ class TeamTest {
         for (Member member : resultList) {
             System.out.println("member.username = " + member.getUserName());
         }
+        entityManager.flush();
     }
+
+    @Test
+    @Transactional
+    @DisplayName("팀을 변경한다.")
+    void test3() {
+        test1();
+        Team team = new Team("team2", "팀2");
+        entityManager.persist(team);
+
+        Member member = entityManager.find(Member.class, "member1");
+        member.setTeam(team);
+        entityManager.flush();
+    }
+
 }
