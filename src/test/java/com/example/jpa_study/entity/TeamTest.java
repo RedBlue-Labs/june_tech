@@ -69,4 +69,12 @@ class TeamTest {
         entityManager.flush();
     }
 
+    @Test
+    @DisplayName("팀을 삭제한다.")
+    void test4() {
+        test1();
+        Member member = entityManager.find(Member.class, "member1");
+        member.setTeam(null);
+        entityManager.flush();
+    }
 }
