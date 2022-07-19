@@ -145,4 +145,18 @@ class TeamTest {
         Member savedMember = entityManager.find(Member.class, "member1");
         assertThat(savedMember.getTeam()).isNull();
     }
+
+    @Test
+    @DisplayName("양방향 관계일 경우 객체들의 연관관계는 모두 맺어주기")
+    void test9() {
+        Team team = new Team("team1", "팀1");
+        entityManager.persist(team);
+
+        Member member = new Member("member1", "회원1");
+
+        //양방향 연관관계 설정
+        member.setTeam(team); // 연관관계 주인임으로 값 설정됨
+        team.getMembers().add(member); // 연관관계 주인은 아니지만 객체임으로 연관관계 맺어주기 위함.
+        entityManager.persist(member);
+    }
 }
