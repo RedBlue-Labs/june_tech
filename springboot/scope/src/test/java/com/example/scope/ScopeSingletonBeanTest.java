@@ -15,5 +15,7 @@ class ScopeSingletonBeanTest {
         ScopeSingletonBean bean1 = context.getBean(ScopeSingletonBean.class);
         ScopeSingletonBean bean2 = context.getBean(ScopeSingletonBean.class);
         assertThat(bean1).isSameAs(bean2);
+
+        context.close();
     }
 }

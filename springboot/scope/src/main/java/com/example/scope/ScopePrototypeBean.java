@@ -13,13 +13,23 @@ import javax.annotation.PreDestroy;
 @Component
 public class ScopePrototypeBean {
 
+    private int countNumber;
     @PostConstruct
     public void init() {
+        countNumber = 0;
         log.info("ScopePrototypeBean PostConstruct 호출 : {} ", this);
+    }
+
+    public int getCountNumber() {
+         return countNumber;
     }
 
     @PreDestroy
     public void end() {
         log.info("ScopePrototypeBean PreDestroy 호출 : {}", this);
+    }
+
+    public void addCountNumber(int countNumber) {
+        this.countNumber += countNumber;
     }
 }
