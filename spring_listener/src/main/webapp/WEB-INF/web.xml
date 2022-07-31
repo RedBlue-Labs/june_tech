@@ -10,6 +10,10 @@
     <servlet-class>tech.listner.TechServlet</servlet-class>
   </servlet>
   
+  <listener>
+    <listener-class>tech.listner.TechListener</listener-class>
+  </listener>
+  
   <servlet-mapping>
     <servlet-name>tech</servlet-name>
     <url-pattern>/tech</url-pattern>
