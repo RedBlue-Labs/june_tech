@@ -14,6 +14,10 @@
     <listener-class>tech.listner.TechListener</listener-class>
   </listener>
   
+  <listener>
+    <listener-class>tech.listner.TechRequestListener</listener-class>
+  </listener>
+  
   <servlet-mapping>
     <servlet-name>tech</servlet-name>
     <url-pattern>/tech</url-pattern>
