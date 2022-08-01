@@ -11,8 +11,7 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-@Table(name = "team_one_to_many")
-@Entity(name = "team_one_to_many")
+@Entity
 public class Team {
 
     @Id

@@ -9,8 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "member_one_to_many")
-@Entity(name = "member_one_to_many")
+@Entity
 public class Member {
 
     @Id
