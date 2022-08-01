@@ -22,7 +22,7 @@ public class Team {
     private String name;
 
     @OneToMany
-    @JoinColumn(name = "teamId") // Member의 FK
+    @JoinColumn(name = "teamId")
     private List<Member> members = new ArrayList<>();
 
     public Team(String name) {

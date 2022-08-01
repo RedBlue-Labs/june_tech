@@ -19,6 +19,10 @@ public class Member {
 
     private String userName;
 
+    @ManyToOne
+    @JoinColumn(name = "teamId", insertable = false, updatable = false)
+    public Team team;
+
     public Member(String userName) {
         this.userName = userName;
     }
