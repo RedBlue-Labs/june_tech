@@ -14,7 +14,7 @@ class MemberTest {
     EntityManager em;
 
     @Test
-    @DisplayName("1:1 단방향 연관관계 테스트")
+    @DisplayName("1:1 연관관계 테스트")
     void test1() {
         Member member1 = new Member("member1");
         Locker lock1 = new Locker("lock1");
