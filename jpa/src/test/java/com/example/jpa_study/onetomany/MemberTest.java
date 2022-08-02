@@ -6,8 +6,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @DataJpaTest
 class MemberTest {
 
@@ -27,5 +25,7 @@ class MemberTest {
         en.persist(member1);
         en.persist(member2);
         en.persist(team1);
+
+        en.flush();
     }
 }
