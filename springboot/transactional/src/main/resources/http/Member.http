@@ -1,0 +1,53 @@
+POST http://localhost:8080/member
+Accept: application/json
+Content-Type: application/json
+
+{
+"name": "june",
+"age": 1
+}
+
+### Checked Exception 1
+POST http://localhost:8080/member/checked-exception
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Checked Exception 1",
+  "age": 2
+}
+
+### Checked Exception 2
+POST http://localhost:8080/member/checked-exception-enable
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Checked Exception 2",
+  "age": 3
+}
+
+### readOnly
+POST http://localhost:8080/member/readOnly
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "read only",
+  "age": 4
+}
+
+### interface
+POST http://localhost:8080/member/interface
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "interface",
+  "age": 5
+}
+
+### health check
+GET http://localhost:8080/member
+
+
