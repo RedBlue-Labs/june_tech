@@ -41,4 +41,14 @@ public class MemberService {
         members.forEach(member -> log.info("{}", member));
         add(name, age);
     }
+
+
+    public void addPrivate(String name, int age) {
+       addMember(name, age);
+    }
+
+    @Transactional(readOnly = true)
+    void addMember(String name, int age) {
+        memberRepository.save(new Member(name, age));
+    }
 }

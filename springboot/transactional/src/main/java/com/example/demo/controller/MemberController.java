@@ -49,6 +49,12 @@ public class MemberController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/private")
+    public ResponseEntity<Void> addPrivate(@RequestBody MemberRequest request) throws IOException {
+        memberService.addPrivate(request.getName(), request.getAge());
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping
     public void check() {
         log.info(">>>>>>>> {} : call", this);
