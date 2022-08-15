@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 
-@EntityScan(basePackages = "com.example.jpa_study.idclass")
-//@EntityScan(basePackages = "com.example.jpa_study.embeddedid")
+//@EntityScan(basePackages = "com.example.jpa_study.idclass")
+@EntityScan(basePackages = "com.example.jpa_study.embeddedid")
 @SpringBootApplication
 public class JpaStudyApplication {
 
