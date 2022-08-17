@@ -9,7 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 //@EntityScan(basePackages = "com.example.jpa_study.embeddedid")
 //@EntityScan(basePackages = "com.example.jpa_study.multi_idclass")
 //@EntityScan(basePackages = "com.example.jpa_study.multi_embeddedid")
-@EntityScan(basePackages = "com.example.jpa_study.non_identify_relationship")
+//@EntityScan(basePackages = "com.example.jpa_study.non_identify_relationship")
+@EntityScan(basePackages = "com.example.jpa_study.one_to_one")
 @SpringBootApplication
 public class JpaStudyApplication {
 
