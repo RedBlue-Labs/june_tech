@@ -1,4 +1,4 @@
-package com.example.mybatis_study.domain.dao;
+package com.example.mybatis_study.center.domain.dao;
 
 import lombok.NoArgsConstructor;
 

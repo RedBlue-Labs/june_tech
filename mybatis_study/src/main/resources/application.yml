@@ -15,5 +15,8 @@ spring:
 #    defer-datasource-initialization: true  #hibernate ???? ?? ??? ???? data.sql? ??? ?? ????.
 #  ???? ???? ??? ???? ???.
 mybatis:
-  mapper-locations: "classpath:mapper/**/*-mapper.xml"
-  config-location: "classpath:mybatis/mybatis-config.xml"
+  configuration:
+    map-underscore-to-camel-case: true
+#  config-location: "classpath:mybatis/mybatis-config.xml"
+  type-aliases-package: "com.example.mybatis_study.**.dao"
+  mapper-locations: "classpath:mapper/**/*.xml"

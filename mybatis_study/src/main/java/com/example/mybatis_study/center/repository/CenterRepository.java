@@ -1,6 +1,6 @@
-package com.example.mybatis_study.repository;
+package com.example.mybatis_study.center.repository;
 
-import com.example.mybatis_study.domain.dao.Center;
+import com.example.mybatis_study.center.domain.dao.Center;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

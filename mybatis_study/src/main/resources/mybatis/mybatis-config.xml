@@ -6,7 +6,7 @@
     </settings>
 
     <typeAliases>
-        <package name="com.example.mybatis_study.domain.dao"/>
+        <package name="com.example.mybatis_study.**.dao"/>
     </typeAliases>
     
 <!--    <typeHandlers>-->

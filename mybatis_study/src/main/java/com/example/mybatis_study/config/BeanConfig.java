@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanConfig {
 
-    @Bean
+    @Bean(name = "objectMapper")
     public ObjectMapper objectMapperConfig() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);// Getter를 쓰지 않아도 private필드에 접근 가능하도록 설정

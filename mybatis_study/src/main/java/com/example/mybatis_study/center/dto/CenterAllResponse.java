@@ -1,7 +1,6 @@
-package com.example.mybatis_study.dto;
+package com.example.mybatis_study.center.dto;
 
-import com.example.mybatis_study.domain.dao.Center;
-import lombok.NoArgsConstructor;
+import com.example.mybatis_study.center.domain.dao.Center;
 import lombok.Value;
 
 import java.util.List;
