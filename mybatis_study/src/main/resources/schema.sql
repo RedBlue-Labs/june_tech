@@ -1,9 +1,32 @@
+DROP TABLE IF EXISTS Center;
+DROP TABLE IF EXISTS Coach;
 DROP TABLE IF EXISTS Member;
 
-CREATE TABLE Member
+
+CREATE TABLE Center
 (
     id    INT AUTO_INCREMENT PRIMARY KEY,
     name  VARCHAR(250) NOT NULL,
-    age   VARCHAR(250) NOT NULL,
+    regDt DATE NOT NULL,
     email VARCHAR(250) DEFAULT NULL
+);
+
+CREATE TABLE Coach
+(
+    id       INT AUTO_INCREMENT PRIMARY KEY,
+    name     VARCHAR(250) NOT NULL,
+    regDt    DATETIME NOT NULL,
+    updateDt DATETIME DEFAULT NULL,
+    email    VARCHAR(250) DEFAULT NULL,
+    centerId INT
+);
+
+CREATE TABLE Member
+(
+    id       INT AUTO_INCREMENT PRIMARY KEY,
+    name     VARCHAR(250) NOT NULL,
+    regDt    DATETIME NOT NULL,
+    updateDt DATETIME DEFAULT NULL,
+    email    VARCHAR(250) DEFAULT NULL,
+    centerId INT
 );
