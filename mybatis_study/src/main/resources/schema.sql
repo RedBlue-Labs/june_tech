@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS Center;
 DROP TABLE IF EXISTS Coach;
 DROP TABLE IF EXISTS Member;
+DROP TABLE IF EXISTS Center;
 
 
 CREATE TABLE Center
@@ -18,7 +18,9 @@ CREATE TABLE Coach
     regDt    DATETIME NOT NULL,
     updateDt DATETIME DEFAULT NULL,
     email    VARCHAR(250) DEFAULT NULL,
-    centerId INT
+    centerId INT,
+    FOREIGN KEY (centerId) REFERENCES Center (id)
+
 );
 
 CREATE TABLE Member
@@ -28,5 +30,6 @@ CREATE TABLE Member
     regDt    DATETIME NOT NULL,
     updateDt DATETIME DEFAULT NULL,
     email    VARCHAR(250) DEFAULT NULL,
-    centerId INT
+    centerId INT,
+    FOREIGN KEY (centerId) REFERENCES Center (id)
 );
