@@ -1,6 +1,7 @@
 package com.example.mybatis_study.center.service;
 
 import com.example.mybatis_study.center.domain.dao.Center;
+import com.example.mybatis_study.center.domain.dao.MemberInfo;
 import com.example.mybatis_study.center.repository.CenterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,5 +16,9 @@ public class CenterService {
 
     public List<Center> findAllCenter() {
         return centerRepository.findTotalCenters();
+    }
+
+    public MemberInfo findMemberIntoCenter(Long centerId) {
+        return centerRepository.findMemberFromCenter(centerId);
     }
 }

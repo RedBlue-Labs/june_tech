@@ -1,11 +1,10 @@
-package com.example.mybatis_study.center.dto;
+package com.example.mybatis_study.coach.dto;
 
 import com.example.mybatis_study.center.domain.dao.Center;
 import com.example.mybatis_study.coach.domain.dao.CoachAndCenter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.Value;
 
 import java.time.LocalDateTime;
 

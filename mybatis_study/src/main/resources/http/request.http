@@ -1,10 +1,16 @@
-# 모든 센터 정보
+// 모든 센터 정보
 http://localhost:8080/api/centers/all
 Content-Type: application/json
 Accept: application/json
 
 ###
-## 해당 센터에 속한 모든 코치정보
+// 해당 코치의 정보 및 코치가 속한 센터 정보
 http://localhost:8080/api/coches/1
+Content-Type: application/json
+Accept: application/json
+
+###
+// 해당 센터에 속한 회원 목록
+http://localhost:8080/api/centers/1/members
 Content-Type: application/json
 Accept: application/json

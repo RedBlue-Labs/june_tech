@@ -9,7 +9,7 @@ VALUES ('coach1', '2022-01-03', 'coach1@gmail.com', 1),
        ('coach2', '2022-01-04', 'coach2@gmail.com', 2),
        ('coach3', '2022-01-05', 'coach3@gmail.com', 3);
 
-INSERT INTO Member (name, regDt, email, centerId)
-VALUES ('member1', '2022-01-03', 'member1@gmail.com', 1),
-       ('member2', '2022-01-04', 'member2@gmail.com', 1),
-       ('member3', '2022-01-05', 'member3@gmail.com', 1);
+INSERT INTO Member (name, regDt, email, centerId, coachId)
+VALUES ('member1', '2022-01-03', 'member1@gmail.com', 1, 1),
+       ('member2', '2022-01-04', 'member2@gmail.com', 1, 1),
+       ('member3', '2022-01-05', 'member3@gmail.com', 1, 1);

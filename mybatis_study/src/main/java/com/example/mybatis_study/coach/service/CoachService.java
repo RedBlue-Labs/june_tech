@@ -5,8 +5,6 @@ import com.example.mybatis_study.coach.repository.CoachRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 @Service
 public class CoachService {
@@ -16,4 +14,5 @@ public class CoachService {
     public CoachAndCenter findCoachInfo(int coachId) {
         return coachRepository.findCoachIntoCenter(coachId);
     }
+
 }

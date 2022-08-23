@@ -1,6 +1,6 @@
 package com.example.mybatis_study.coach.controller;
 
-import com.example.mybatis_study.center.dto.CoachResponse;
+import com.example.mybatis_study.coach.dto.CoachResponse;
 import com.example.mybatis_study.coach.domain.dao.CoachAndCenter;
 import com.example.mybatis_study.coach.service.CoachService;
 import lombok.RequiredArgsConstructor;

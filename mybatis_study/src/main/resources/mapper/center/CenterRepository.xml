@@ -10,4 +10,36 @@
                email
           FROM center
     </select>
+
+    <resultMap id="MemberCollectionMap" type="Member">
+        <id property="id" column="member_id"/>
+        <result property="name" column="member_name"/>
+        <result property="regDt" column="member_reg_dt"/>
+        <result property="email" column="member_email"/>
+        <result property="centerId" column="member_center_id"/>
+    </resultMap>
+    
+    <resultMap id="MemberInfoMap" type="MemberInfo">
+        <id property="centerId" column="center_id"/>
+        <result property="centerName" column="center_name"/>
+        <result property="centerRegDt" column="center_reg_dt"/>
+        <result property="centerEmail" column="center_email"/>
+        <collection property="members" ofType="Member" resultMap="MemberCollectionMap"/>
+    </resultMap>
+
+    <select id="findMemberFromCenter" resultMap="MemberInfoMap">
+        SELECT c.id as center_id,
+               c.name as center_name,
+               c.regDt as center_reg_dt,
+               c.email as center_email,
+               m.id as member_id,
+               m.name as member_name,
+               m.regDt as member_reg_dt,
+               m.email as member_email,
+               m.centerId as member_center_id
+          FROM CENTER c
+LEFT OUTER JOIN MEMBER m
+            ON c.ID = m.CENTERID
+         WHERE c.ID = 1
+    </select>
 </mapper>
