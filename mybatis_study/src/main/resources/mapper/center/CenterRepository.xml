@@ -5,7 +5,8 @@
 
 <mapper namespace="com.example.mybatis_study.center.repository.CenterRepository">
     <select id="findTotalCenters" resultType="Center">
-        SELECT name,
+        SELECT id,
+               name,
                regDt,
                email
           FROM center
@@ -24,7 +25,7 @@
         <result property="centerName" column="center_name"/>
         <result property="centerRegDt" column="center_reg_dt"/>
         <result property="centerEmail" column="center_email"/>
-        <collection property="members" ofType="Member" resultMap="MemberCollectionMap"/>
+        <collection property="members" ofType="Member" javaType="ArrayList" resultMap="MemberCollectionMap"/>
     </resultMap>
 
     <select id="findMemberFromCenter" resultMap="MemberInfoMap">
