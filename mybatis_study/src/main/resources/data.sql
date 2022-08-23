@@ -6,8 +6,8 @@ VALUES ('test1', '1994-02-23', 'test1@gmail.com'),
 
 INSERT INTO Coach (name, regDt, email, centerId)
 VALUES ('coach1', '2022-01-03', 'coach1@gmail.com', 1),
-       ('coach2', '2022-01-04', 'coach2@gmail.com', 1),
-       ('coach3', '2022-01-05', 'coach3@gmail.com', 2);
+       ('coach2', '2022-01-04', 'coach2@gmail.com', 2),
+       ('coach3', '2022-01-05', 'coach3@gmail.com', 3);
 
 INSERT INTO Member (name, regDt, email, centerId)
 VALUES ('member1', '2022-01-03', 'member1@gmail.com', 1),

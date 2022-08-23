@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mybatis_study.coach.repository.CoachRepository">
+
+  <resultMap id="CoachAndCenterMap" type="CoachAndCenter">
+    <id property="id" column="coach_id"/>
+    <result property="name" column="coach_name"/>
+    <result property="email" column="coach_email"/>
+    <result property="regDt" column="coach_reg_dt"/>
+    <association property="center" javaType="Center">
+      <id property="id" column="center_id"/>
+      <result property="name" column="center_name"/>
+      <result property="email" column="center_email"/>
+      <result property="regDt" column="center_reg_dt"/>
+    </association>
+  </resultMap>
+
+  <select id="findCoachIntoCenter" resultMap="CoachAndCenterMap">
+    SELECT c.ID as coach_id,
+           c.NAME as coach_name,
+           c.EMAIL as coach_email,
+           c.REGDT as coach_reg_dt,
+           CENTER.ID as center_id,
+           CENTER.NAME as center_name,
+           CENTER.EMAIL as center_email,
+           CENTER.REGDT as center_reg_dt
+      FROM COACH c
+INNER JOIN CENTER on c.CENTERID = CENTER.ID
+     WHERE c.ID = #{coachId}
+  </select>
+</mapper>

@@ -1,6 +1,7 @@
 package com.example.mybatis_study.coach.controller;
 
 import com.example.mybatis_study.center.dto.CoachResponse;
+import com.example.mybatis_study.coach.domain.dao.CoachAndCenter;
 import com.example.mybatis_study.coach.service.CoachService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,9 @@ public class CoachController {
 
     private final CoachService coachService;
 
-    @GetMapping("/centers/{centerId}/coches")
-    public ResponseEntity<CoachResponse> findCoachFromCenter(@PathVariable int centerId) {
-        coachService.findCoaches(centerId);
-        return ResponseEntity.ok().build();
+    @GetMapping("/coches/{coachId}")
+    public ResponseEntity<CoachResponse> findCoachFromCenter(@PathVariable int coachId) {
+        CoachAndCenter coachInfo = coachService.findCoachInfo(coachId);
+        return ResponseEntity.ok(CoachResponse.of(coachInfo));
     }
 }

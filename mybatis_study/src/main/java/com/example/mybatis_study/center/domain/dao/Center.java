@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Alias("Center")
 public class Center {
+    private Long id;
     private String name;
     private LocalDate regDt;
     private String email;

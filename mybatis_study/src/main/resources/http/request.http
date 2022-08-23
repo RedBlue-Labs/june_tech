@@ -5,6 +5,6 @@ Accept: application/json
 
 ###
 ## 해당 센터에 속한 모든 코치정보
-http://localhost:8080/api/centers/1/coches
+http://localhost:8080/api/coches/1
 Content-Type: application/json
 Accept: application/json

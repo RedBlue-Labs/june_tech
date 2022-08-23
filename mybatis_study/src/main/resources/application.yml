@@ -6,10 +6,10 @@ spring:
     console:
       enabled: true
   datasource:
-    url: jdbc:h2:file:/Users/junehee/june/june_tech/mybatis_study/src/main/resources/data/data;AUTO_SERVER=true
+    url: jdbc:log4jdbc:h2:file:/Users/junehee/june/june_tech/mybatis_study/src/main/resources/data/data;AUTO_SERVER=true
     username: sa
     password:
-    driverClassName: org.h2.Driver
+    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
   jpa:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 #    defer-datasource-initialization: true  #hibernate ???? ?? ??? ???? data.sql? ??? ?? ????.
@@ -20,3 +20,4 @@ mybatis:
 #  config-location: "classpath:mybatis/mybatis-config.xml"
   type-aliases-package: "com.example.mybatis_study.**.dao"
   mapper-locations: "classpath:mapper/**/*.xml"
+
