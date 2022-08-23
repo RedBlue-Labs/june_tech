@@ -40,6 +40,57 @@
           FROM CENTER c
 LEFT OUTER JOIN MEMBER m
             ON c.ID = m.CENTERID
-         WHERE c.ID = 1
+         WHERE c.ID = #{centerId}
+    </select>
+
+    <resultMap id="MemberNestedMap" type="MemberInfo">
+        <id property="centerId" column="center_id"/>
+        <result property="centerName" column="center_name"/>
+        <result property="centerRegDt" column="center_reg_dt"/>
+        <result property="centerEmail" column="center_email"/>
+        <collection property="members" column="{centerId = center_id}" javaType="java.util.ArrayList" ofType="Member" select="findMemberSubQuery"/>
+    </resultMap>
+
+    <select id="findMemberSubQuery" resultType="Member">
+        SELECT id,
+               name,
+               regDt,
+               email,
+               centerId
+          FROM MEMBER
+         WHERE centerId = #{centerId}
+    </select>
+
+    <select id="findMemberNestedSelect" resultMap="MemberNestedMap">
+        SELECT id as center_id,
+               name as center_name,
+               regDt as center_reg_dt,
+               email as center_email
+        FROM CENTER
+        WHERE id = #{centerId}
+    </select>
+
+
+    <select id="findMemberNestedSelectNPlusOne" resultMap="MemberNestedMap">
+        SELECT id as center_id,
+               name as center_name,
+               regDt as center_reg_dt,
+               email as center_email
+          FROM CENTER
+    </select>
+
+    <select id="findMemberNestedSelectJoin" resultMap="MemberInfoMap">
+        SELECT c.id as center_id,
+               c.name as center_name,
+               c.regDt as center_reg_dt,
+               c.email as center_email,
+               m.id as member_id,
+               m.name as member_name,
+               m.regDt as member_reg_dt,
+               m.email as member_email,
+               m.centerId as member_center_id
+          FROM CENTER c
+LEFT OUTER JOIN MEMBER m
+            ON c.ID = m.CENTERID
     </select>
 </mapper>

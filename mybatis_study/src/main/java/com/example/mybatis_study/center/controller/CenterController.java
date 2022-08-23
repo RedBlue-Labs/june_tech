@@ -34,4 +34,22 @@ public class CenterController {
         return ResponseEntity.ok(MembersResponse.of(memberTeachByCoach));
     }
 
+
+    @GetMapping("/{centerId}/members2")
+    public ResponseEntity<MembersResponse> findMembersFromCenter2(@PathVariable Long centerId) {
+        MemberInfo memberTeachByCoach = centerService.findMemberIntoCenter2(centerId);
+        return ResponseEntity.ok(MembersResponse.of(memberTeachByCoach));
+    }
+
+    @GetMapping("/all/members")
+    public ResponseEntity<List<MemberInfo>> findMembersFromCenter3() {
+        List<MemberInfo> memberIntoCenter = centerService.findMemberIntoCenter3();
+        return ResponseEntity.ok(memberIntoCenter);
+    }
+
+    @GetMapping("/all/members2")
+    public ResponseEntity<List<MemberInfo>> findMembersFromCenter4() {
+        List<MemberInfo> memberIntoCenter = centerService.findMemberIntoCenter4();
+        return ResponseEntity.ok(memberIntoCenter);
+    }
 }

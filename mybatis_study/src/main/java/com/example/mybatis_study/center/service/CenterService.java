@@ -21,4 +21,16 @@ public class CenterService {
     public MemberInfo findMemberIntoCenter(Long centerId) {
         return centerRepository.findMemberFromCenter(centerId);
     }
+
+    public MemberInfo findMemberIntoCenter2(Long centerId) {
+        return centerRepository.findMemberNestedSelect(centerId);
+    }
+
+    public List<MemberInfo> findMemberIntoCenter3() {
+        return centerRepository.findMemberNestedSelectNPlusOne();
+    }
+
+    public List<MemberInfo> findMemberIntoCenter4() {
+        return centerRepository.findMemberNestedSelectJoin();
+    }
 }

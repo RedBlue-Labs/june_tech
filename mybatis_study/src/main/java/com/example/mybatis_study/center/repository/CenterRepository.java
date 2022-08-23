@@ -11,4 +11,10 @@ public interface CenterRepository {
     List<Center> findTotalCenters();
 
     MemberInfo findMemberFromCenter(Long centerId);
+
+    MemberInfo findMemberNestedSelect(Long centerId);
+
+    List<MemberInfo> findMemberNestedSelectNPlusOne();
+
+    List<MemberInfo> findMemberNestedSelectJoin();
 }
