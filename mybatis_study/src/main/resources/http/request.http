@@ -10,7 +10,7 @@ Content-Type: application/json
 Accept: application/json
 
 ###
-// 해당 센터에 속한 회원 목록1 (Nested Select)
+// 해당 센터에 속한 회원 목록1 (Nested Results)
 http://localhost:8080/api/centers/1/members
 Content-Type: application/json
 Accept: application/json
@@ -18,7 +18,7 @@ Accept: application/json
 
 
 ###
-// 해당 센터에 속한 회원 목록2 (Nested Results)
+// 해당 센터에 속한 회원 목록2 (Nested Select)
 http://localhost:8080/api/centers/1/members2
 Content-Type: application/json
 Accept: application/json
