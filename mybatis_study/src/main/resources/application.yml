@@ -1,19 +1,18 @@
 spring:
   sql:
     init:
-      mode: always   # v2.5 ?? ?? sql.init.mode? ????? ?????, schema.sql, data.sql? ????? ?????? ????.
+      mode: always   # v2.5 버전부터 sql.init.mode로 동작한다, schema.sql, data.sql를 사용할지 결정하는 설정값
   h2:
     console:
       enabled: true
   datasource:
-    url: jdbc:log4jdbc:h2:file:/Users/junehee/june/june_tech/mybatis_study/src/main/resources/data/data;AUTO_SERVER=true
+    url: jdbc:log4jdbc:h2:file:/Users/junehee/junehee/repo/june_tech/mybatis_study/src/main/resources/data/data;AUTO_SERVER=true;OLD_INFORMATION_SCHEMA=TRUE
     username: sa
     password:
     driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
   jpa:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-#    defer-datasource-initialization: true  #hibernate ???? ?? ??? ???? data.sql? ??? ?? ????.
-#  ???? ???? ??? ???? ???.
+#    defer-datasource-initialization: true  #hibernate에 의한 스키마부터 생성하기. 즉 true로 설정 시 ddl-auto을 먼저 실행 후 schema.sql, data.sql들이 실행된다. false면 반대로 동작
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
