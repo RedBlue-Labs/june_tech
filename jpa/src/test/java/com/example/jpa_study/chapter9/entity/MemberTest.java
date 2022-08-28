@@ -18,7 +18,7 @@ class MemberTest {
     @Test
     @DisplayName("값 타입의 공유 참조시 side effect발생")
     void test1() {
-        Member member1  = new Member();
+        Member member1 = new Member();
         member1.setHomeAddress(new Address("oldCity", "test"));
         Address homeAddress = member1.getHomeAddress();
 //        homeAddress.setCity("testCity"); // 참조형이라 원본값도 변경됨
@@ -33,7 +33,7 @@ class MemberTest {
     @Test
     @DisplayName("값 타입일 경우 항상 Emmutable Object로 만들어야 한다.")
     void test2() {
-        Member member1  = new Member();
+        Member member1 = new Member();
         member1.setHomeAddress(new Address("oldCity", "test"));
 
         Member member2 = new Member();
@@ -41,5 +41,14 @@ class MemberTest {
 
         assertThat(member1.getHomeAddress().getCity()).isEqualTo("oldCity");
         assertThat(member2.getHomeAddress().getCity()).isEqualTo("testCity");
+    }
+
+    @Test
+    @DisplayName("값 타입인 경우 equals and Hashcode를 구현해야 비교가 가능하다. (동등성 비교)")
+    void test3() {
+        Address address1 = new Address("oldCity", "test");
+        Address address2 = new Address("oldCity", "test");
+
+        assertThat(address1).isEqualTo(address2);
     }
 }
