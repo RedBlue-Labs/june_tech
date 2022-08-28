@@ -1,13 +1,14 @@
 package com.example.jpa_study.chapter9.entity;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
-@Data
+@Getter
 @Embeddable
 @NoArgsConstructor
 public class Address {
