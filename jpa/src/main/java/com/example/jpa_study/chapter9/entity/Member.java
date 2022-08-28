@@ -18,4 +18,7 @@ public class Member {
 
     @Embedded
     private Address homeAddress;
+
+    @Embedded
+    private PhoneNumber phoneNumber;
 }
