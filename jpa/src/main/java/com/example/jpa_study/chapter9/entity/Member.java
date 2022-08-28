@@ -1,9 +1,11 @@
 package com.example.jpa_study.chapter9.entity;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 public class Member {
 
