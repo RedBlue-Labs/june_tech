@@ -19,12 +19,12 @@ public class Member {
     @Embedded
     private Address homeAddress;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "favoriteFoods", joinColumns = @JoinColumn(name = "memberId"))
     @Column(name = "foodName")
     private Set<String> favoriteFoods = new HashSet<>();
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @AttributeOverrides({
             @AttributeOverride(name = "city", column = @Column(name = "cityHistory")),
             @AttributeOverride(name = "street", column = @Column(name = "streetHistory"))
