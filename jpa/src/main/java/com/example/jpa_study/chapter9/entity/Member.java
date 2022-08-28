@@ -20,5 +20,15 @@ public class Member {
     private Address homeAddress;
 
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "city", column = @Column(name = "companyCity")),
+            @AttributeOverride(name = "street", column = @Column(name = "companyStreet")),
+            @AttributeOverride(name = "zipCode.zip", column = @Column(name = "companyZip")),
+            @AttributeOverride(name = "zipCode.plusFour", column = @Column(name = "companyPlusFour"))
+
+    })
+    private Address companyAddress;
+
+    @Embedded
     private PhoneNumber phoneNumber;
 }
