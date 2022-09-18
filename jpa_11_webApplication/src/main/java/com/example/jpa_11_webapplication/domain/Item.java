@@ -2,11 +2,13 @@ package com.example.jpa_11_webapplication.domain;
 
 import com.example.jpa_11_webapplication.exception.NotEnoughStockException;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Setter
 @Getter
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -15,14 +17,14 @@ public abstract class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
-    public Long id;
+    private Long id;
 
-    public String name;
-    public int price;
+    private String name;
+    private int price;
     public int stockQuantity; // 재고수량
 
     @ManyToMany(mappedBy = "items")
-    public List<Category> categories = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
     // 비즈니스 로직
     public void addStock(int quantity) {

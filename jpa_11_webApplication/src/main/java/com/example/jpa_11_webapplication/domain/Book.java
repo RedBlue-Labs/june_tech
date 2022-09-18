@@ -3,11 +3,13 @@ package com.example.jpa_11_webapplication.domain;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-@EqualsAndHashCode
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DiscriminatorValue("B")

@@ -1,7 +1,15 @@
 package com.example.jpa_11_webapplication.domain;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Delivery {
 
@@ -18,4 +26,8 @@ public class Delivery {
 
     @Enumerated(value = EnumType.STRING)
     public DeliveryStatus status;
+
+    public Delivery(Address address) {
+        this.address = address;
+    }
 }
