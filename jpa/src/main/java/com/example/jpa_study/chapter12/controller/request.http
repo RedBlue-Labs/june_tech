@@ -1,0 +1,35 @@
+###
+POST http://localhost:8080/api/create/test1
+
+###
+POST http://localhost:8080/api/member/1/order
+
+###
+GET http://localhost:8080/api/members/test1
+
+<> 2022-09-25T155411.200.json
+<> 2022-09-25T155320.200.json
+<> 2022-09-25T155303.500.json
+<> 2022-09-25T155209.500.json
+<> 2022-09-25T155145.500.json
+<> 2022-09-25T152034.200.json
+<> 2022-09-25T152021.200.json
+<> 2022-09-25T151951.200.json
+<> 2022-09-25T151934.200.json
+<> 2022-09-25T151843.200.json
+
+###
+GET http://localhost:8080/api/member/test1
+
+
+###
+GET http://localhost:8080/api/orders
+
+###
+GET http://localhost:8080/api/orders2
+
+
+
+
+###
+GET http://localhost:8080/api/order/3
